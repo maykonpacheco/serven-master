@@ -26,27 +26,6 @@ class Navbar extends Component {
             <h1>Seven</h1>
             <ul class="nav justify-content-end">
               <li class="nav-item">
-                <Link class="nav-link" to="/">
-                  <Tooltip title="Agendamentos">
-                    <BarChart />
-                  </Tooltip>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/Especialist">
-                  <Tooltip title="Especialistas">
-                    <SentimentSatisfied />
-                  </Tooltip>
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/Queries">
-                  <Tooltip title="Consultas">
-                    <AppsIcon />
-                  </Tooltip>
-                </Link>
-              </li>
-              <li class="nav-item">
                 <a
                   class="nav-link"
                   href=""
