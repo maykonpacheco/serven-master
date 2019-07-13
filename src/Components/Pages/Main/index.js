@@ -3,8 +3,8 @@ import './styles.css';
 import firebase from '../../../firebase';
 
 //import Search from '../../Components/Search'; 
-import Test from './Test';
-
+import Consultas from './Consultas';
+import Navbar from '../../Navbar';
 
 class Main extends Component {
   constructor(props) {
@@ -23,8 +23,8 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Test />
-       
+        <Navbar />
+        <Consultas />
       </div>
      
     );

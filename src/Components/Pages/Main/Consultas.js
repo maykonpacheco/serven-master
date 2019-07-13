@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 
-class Test extends Component {
+class Consultas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,5 +69,5 @@ class Test extends Component {
   }
 }
 
-export default Test;
+export default Consultas;
 
