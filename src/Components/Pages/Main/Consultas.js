@@ -63,7 +63,7 @@ class Consultas extends Component {
       <Container>
         {this.state.boards.map(board => (
         <div class="col-12 col-sm-12 col-lg-12">
-                <div class="card">
+                <div className="card">
                   <div className="card-header">
                     <h4 className="fontColor">{board.title}</h4>
                     <div class="card-header-action">
