@@ -16,14 +16,15 @@ import "../../assets/css/components.css";
 
 import "./styles.css";
 
-
 class Navbar extends Component {
   render() {
     return (
       <div>
         <div class="section">
           <div class="section-header">
-            <h1>Seven</h1>
+            <Link to="/">
+              <h1>Seven</h1>
+            </Link>
             <ul class="nav justify-content-end">
               <li class="nav-item">
                 <a

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
-import './styles.css';
 import firebase from '../../../firebase';
 import Login from './Login';
 import Finalize from '../Finalize';
-
 
 class SignIn extends Component {
   constructor() {
@@ -35,6 +32,7 @@ class SignIn extends Component {
   render() {
     return (
       <div>
+            
         {this.state.user ? (
           <Finalize />
         ) :
@@ -48,5 +46,3 @@ class SignIn extends Component {
 
 
 export default SignIn;
-
-

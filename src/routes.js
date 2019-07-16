@@ -7,17 +7,27 @@ import SignIn from './Components/Pages/SignIn';
 import SignUp from './Components/Pages/SignUp';
 import Finalize from './Components/Pages/Finalize';
 
+import { AuthProvider } from "./Components/Pages/SignIn/Auth";
+import PrivateRoute from "./privateRouter";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const Routes = () => (
-  <BrowserRouter>
-      <Switch>
+const Routes = () => {
+  return (
+    <AuthProvider>
+      <Router>
+        <div>
         <Route exact path="/" component={Main} />
-        <Route exact path="/Servicos" component={Servicos} />
-        <Route exact path="/SignIn" component={SignIn} />
-        <Route exact path="/SignUp" component={SignUp} />
-        <Route exact path="/Finalize" component={Finalize} />
-      </Switch>
-  </BrowserRouter>
-);
+        <Route exact path="/servicos" component={Servicos} />
+        <Route exact path="/signIn" component={SignIn} />
+        <Route exact path="/signUp" component={SignUp} />
+        <Route exact path="/sinalize" component={Finalize} />
+        </div>
+      </Router>
+    </AuthProvider>
+  );
+};
+
+
 
 export default Routes;
+

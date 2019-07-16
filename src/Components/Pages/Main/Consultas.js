@@ -3,6 +3,8 @@ import firebase from '../../../firebase';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './styles.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import queryString from 'query-string';
 
 import "../../../assets/css/style.css";
 import "../../../assets/css/components.css";
@@ -18,7 +20,14 @@ class Consultas extends Component {
     };
   }
 
+  
+
   componentDidMount() {
+    const parsedHash = queryString.parse(this.props.location.hash);
+console.log(parsedHash);
+
+    const location = queryString.parse(this.props.location.search)
+     console.log(" Testando som", location.search)
     const ref = firebase.firestore().collection('boards').doc(this.props.match.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
@@ -44,12 +53,13 @@ class Consultas extends Component {
         description,
         author
       });
-         console.log(doc.id, " => ", doc.data());
+        // console.log(doc.id, " => ", doc.data());
     });
     this.setState({
       boards
     });
-    console.log("Aqui", boards)
+    
+    //console.log("Aqui", boards)
 
   };
 
@@ -59,6 +69,7 @@ class Consultas extends Component {
   }
 
   render() {
+
     return (
       <Container>
         {this.state.boards.map(board => (
@@ -68,7 +79,10 @@ class Consultas extends Component {
                     <h4 className="fontColor">{board.title}</h4>
                     <div class="card-header-action">
                       <a href="#" class="btn">R$ {board.author}</a>
-                      <button type="submit" className="btn btn-primary " >Agendar</button>
+                      {
+                      <Link to={{ pathname: "/servicos", search: "?filter=yahoo" }} type="submit" className="btn btn-primary ">Agendar</Link>
+                      }
+                    
                     </div>
                   </div>
               </div>
@@ -79,5 +93,13 @@ class Consultas extends Component {
   }
 }
 
+
 export default Consultas;
 
+/*
+`/Servicos/${this.props.Especialist.filter(item => 
+  item.especialidade === "cardiologista"
+  )}`}
+
+
+  */
