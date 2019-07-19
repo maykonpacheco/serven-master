@@ -1,11 +1,11 @@
 import React from "react";
-
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import "./styles.css";
 
 const Footer = () => (
-  <div className="simple-footer footer-fixed">
+  <div className="simple-footer">
   <p>
-    Feito com <i className="fa fa-heart" />s2 em Cuiabá-MT
+    Feito com <FavoriteIcon /> em Cuiabá-MT
   </p>
 </div>
 );

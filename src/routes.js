@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Main from './Components/Pages/Main';
 import Servicos from './Components/Pages/Servicos';
-import SignIn from './Components/Pages/SignIn';
+import SignIn from './Components/Pages/SignIn/Login';
 import SignUp from './Components/Pages/SignUp';
 import Finalize from './Components/Pages/Finalize';
 

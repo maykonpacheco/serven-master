@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import firebase from "../../../firebase";
 import { AuthContext } from "./Auth.js";
 
-  const Login = ({ history }) => {
+  const SignIn = ({ history }) => {
     const handleLogin = useCallback(
       async event => {
         event.preventDefault();
@@ -13,7 +13,7 @@ import { AuthContext } from "./Auth.js";
           await firebase
             .auth()
             .signInWithEmailAndPassword(email.value, password.value);
-          history.push("/");  
+          history.push("/finalizar-agendamento");  
         } catch (error) {
           alert(error);
         }
@@ -24,7 +24,7 @@ import { AuthContext } from "./Auth.js";
     const { currentUser } = useContext(AuthContext);
   
     if (currentUser) {
-      return <Redirect to="/" />;
+      return <Redirect to="/finalizar-agendamento" />;
     }
   
     return (
@@ -39,7 +39,7 @@ import { AuthContext } from "./Auth.js";
 
                 <div class="card card-primary">
                   <div class="card-header">
-                    <h4>Login</h4>
+                    <h4>Entrar</h4>
                   </div>
 
                   <div class="card-body">
@@ -98,7 +98,7 @@ import { AuthContext } from "./Auth.js";
                           class="btn btn-primary btn-lg btn-block"
                           tabindex="4"
                         >
-                          Login
+                          Entrar
                         </button>
                       </div>
                     </form>
@@ -106,11 +106,11 @@ import { AuthContext } from "./Auth.js";
                 </div>
                 <div class="mt-5 text-muted text-center">
                   Você ainda não tem uma conta?{" "}
-                  <Link href="auth-register.html">Criar conta</Link>
+                  <Link to="/SignUp">Criar conta</Link>
                 </div>
                 <div className="simple-footer">
                   <p>
-                    Feito com <i className="fa fa-heart" /> em Cuiabá-MT
+                   
                   </p>
                 </div>
               </div>
@@ -121,4 +121,4 @@ import { AuthContext } from "./Auth.js";
     );
   }
 
-  export default withRouter(Login);
+  export default withRouter(SignIn);
