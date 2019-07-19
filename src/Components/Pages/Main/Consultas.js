@@ -20,14 +20,9 @@ class Consultas extends Component {
     };
   }
 
-  
 
-  componentDidMount() {
-    const parsedHash = queryString.parse(this.props.location.hash);
-console.log(parsedHash);
-
-    const location = queryString.parse(this.props.location.search)
-     console.log(" Testando som", location.search)
+  componentDidMount() {   
+    
     const ref = firebase.firestore().collection('boards').doc(this.props.match.params.id);
     ref.get().then((doc) => {
       if (doc.exists) {
@@ -36,6 +31,7 @@ console.log(parsedHash);
           key: doc.id,
           isLoading: false
         });
+      
       } else {
         console.log("No such document!");
       }
@@ -53,18 +49,19 @@ console.log(parsedHash);
         description,
         author
       });
-        // console.log(doc.id, " => ", doc.data());
+       // console.log("Aqui", this.props.values)
+      //console.log("Aqui ", this.props.parsed);
+      //  console.log(doc.id, " => ", doc.data());
     });
     this.setState({
       boards
     });
-    
     //console.log("Aqui", boards)
 
   };
 
-  componentDidMount() {
-    
+  componentDidMount() {  
+    console.log("Aqui", queryString.parse());
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
@@ -73,25 +70,27 @@ console.log(parsedHash);
     return (
       <Container>
         {this.state.boards.map(board => (
-        <div class="col-12 col-sm-12 col-lg-12">
+        <div className="col-12 col-sm-12 col-lg-12">
                 <div className="card">
                   <div className="card-header">
                     <h4 className="fontColor">{board.title}</h4>
-                    <div class="card-header-action">
-                      <a href="#" class="btn">R$ {board.author}</a>
+                    <div className="card-header-action">
+                      <a href="#" className="btn">R$ {board.author}</a>
                       {
-                      <Link to={{ pathname: "/servicos", search: "?filter=yahoo" }} type="submit" className="btn btn-primary ">Agendar</Link>
-                      }
-                    
+                      <Link to={"/servicos"} type="submit" className="btn btn-primary ">Agendar</Link>
+                      }  
                     </div>
-                  </div>
-              </div>
-          </div>
+                 
+                </div>
+            </div>
+        </div>
             ))}
       </Container>
     );
   }
 }
+
+
 
 
 export default Consultas;
