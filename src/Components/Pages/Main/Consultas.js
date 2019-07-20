@@ -12,75 +12,78 @@ import "../../../assets/css/components.css";
 class Consultas extends Component {
   constructor(props) {
     super(props);
-    this.ref = firebase.firestore().collection("boards");
+    this.ref = firebase.firestore().collection("Especialist");
     this.unsubscribe = null;
     this.state = {
-      boards: [],
-      key: ''
+      Especialist: [],
+      key: ""
     };
   }
 
-
-  componentDidMount() {   
-    
-    const ref = firebase.firestore().collection('boards').doc(this.props.match.params.id);
-    ref.get().then((doc) => {
+  componentDidMount() {
+    const ref = firebase
+      .firestore()
+      .collection("Especialist")
+      .doc(this.props.match.params.id);
+    ref.get().then(doc => {
       if (doc.exists) {
         this.setState({
           board: doc.data(),
           key: doc.id,
           isLoading: false
         });
-      
       } else {
         console.log("No such document!");
       }
     });
   }
-  
+
   onCollectionUpdate = querySnapshot => {
-    const boards = [];
+    const Especialist = [];
     querySnapshot.forEach(doc => {
-      const { title, description, author } = doc.data();
-      boards.push({
+      const { nome, especialidade, segunda, domingo, terca, quarta, quinta, sexta, sabado } = doc.data();
+      Especialist.push({
         key: doc.id,
         doc, // DocumentSnapshot
-        title,
-        description,
-        author
+        nome,
+        especialidade,
+        domingo,
+        segunda,
+        terca,
+        quarta,
+        quinta,
+        sexta,
+        sabado
       });
-       // console.log("Aqui", this.props.values)
-      //console.log("Aqui ", this.props.parsed);
-      //  console.log(doc.id, " => ", doc.data());
+      //console.log(doc.id, " => ", doc.data());
     });
+    console.log("Aqui", Especialist)
     this.setState({
-      boards
+      Especialist
     });
-    //console.log("Aqui", boards)
-
   };
 
-  componentDidMount() {  
-    console.log("Aqui", queryString.parse());
+  componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
   render() {
 
     return (
+      
       <Container>
-        {this.state.boards.map(board => (
+        {this.state.Especialist.map((item => 
+        
         <div className="col-12 col-sm-12 col-lg-12">
                 <div className="card">
                   <div className="card-header">
-                    <h4 className="fontColor">{board.title}</h4>
+                    <h4 className="fontColor">{item.especialidade}</h4>
                     <div className="card-header-action">
-                      <a href="#" className="btn">R$ {board.author}</a>
-                      {
-                      <Link to={"/servicos"} type="submit" className="btn btn-primary ">Agendar</Link>
-                      }  
+                      <a href="#" className="btn">R$ </a>
+                     
+                      {console.log("teste",  item.especialidade)}
+                      <Link to={{ pathname: "/servicos", search: "?especialidade="+item.especialidade }} className="btn btn-primary ">Agendar</Link>
                     </div>
-                 
                 </div>
             </div>
         </div>

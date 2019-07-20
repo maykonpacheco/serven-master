@@ -3,7 +3,7 @@ import firebase from "../../../firebase";
 
 import "./styles.css";
 import Navbar from "../../Navbar";
-
+import { Link } from 'react-router-dom';
 
 
 import { Container, Row, Button, Card } from "react-bootstrap";
@@ -40,11 +40,12 @@ class Servicos extends Component {
   onCollectionUpdate = querySnapshot => {
     const Especialist = [];
     querySnapshot.forEach(doc => {
-      const { nome, segunda, domingo, terca, quarta, quinta, sexta, sabado } = doc.data();
+      const { nome, especialidade, segunda, domingo, terca, quarta, quinta, sexta, sabado } = doc.data();
       Especialist.push({
         key: doc.id,
         doc, // DocumentSnapshot
         nome,
+        especialidade,
         domingo,
         segunda,
         terca,
@@ -69,7 +70,7 @@ class Servicos extends Component {
     return (
       <div>
         <Navbar />
-        <Container>
+        <Container>       
           <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
               Domingo, 12 de Abril
