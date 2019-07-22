@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
-import './styles.css';
-import firebase from '../../../firebase';
+import React, { Component } from "react";
+import "./styles.css";
+import firebase from "../../../firebase";
 
-//import Search from '../../Components/Search'; 
-import Consultas from './Consultas';
-import Navbar from '../../Navbar';
+//import Search from '../../Components/Search';
+import Consultas from "./Consultas";
+import Navbar from "../../Navbar";
 //import Footer from "../../Footer";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
-    
-
   }
 
   logout() {
     firebase.auth().signOut();
-}
-
-
+  }
 
   render() {
     return (
@@ -27,10 +23,8 @@ class Main extends Component {
         <Navbar />
         <Consultas />
       </div>
-     
     );
   }
 }
 
 export default Main;
-
