@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './styles.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import queryString from 'query-string';
+
 
 import "../../../assets/css/style.css";
 import "../../../assets/css/components.css";
@@ -57,7 +57,7 @@ class Consultas extends Component {
       });
       //console.log(doc.id, " => ", doc.data());
     });
-    console.log("Aqui", Especialist)
+    //console.log("Aqui", Especialist)
     this.setState({
       Especialist
     });
@@ -68,9 +68,7 @@ class Consultas extends Component {
   }
 
   render() {
-
     return (
-      
       <Container>
         {this.state.Especialist.map((item => 
         
