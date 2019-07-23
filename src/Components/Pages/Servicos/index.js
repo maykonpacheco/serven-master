@@ -69,206 +69,249 @@ class Servicos extends Component {
         <Container>
           <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
-              Domingo, 12 de Abril
+              Domingo
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.domingo.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {console.log("Aqui =>2", this.state.Especialist)}
+            {this.state.Especialist.map(
+              board =>
+                board.domingo.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.domingo.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Segunda, 13 de Abril
+              Segunda
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.segunda.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {this.state.Especialist.map(
+              board =>
+                board.segunda.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.segunda.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Terça, 14 de Abril
+              Terça
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.terca.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {this.state.Especialist.map(
+              board =>
+                board.terca.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.terca.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Quarta, 15 de Abril
+              Quarta
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.quarta.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {this.state.Especialist.map(
+              board =>
+                board.quarta.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.quarta.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Quinta, 16 de Abril
+              Quinta
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.quinta.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {this.state.Especialist.map(
+              board =>
+                board.quinta.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.quinta.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Sexta, 17 de Abril
+              Sexta
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.sexta.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {this.state.Especialist.map(
+              board =>
+                board.sexta.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.sexta.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Sabado, 18 de Abril
+              Sabado
             </h5>
-            {this.state.Especialist.map(board => (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">{board.nome}</h4>
-                  </div>
-                  <div className="card-header row">
-                    <div class="col mb-4 mb-lg-0 text-center">
-                      <div class="row">
-                        {board.sabado.map(board => (
-                          <div className="button-hour">
-                            {board.value === true ? (
-                              <button type="submit" className="btn btn-primary">
-                                {board.hour}
-                              </button>
-                            ) : null}
+            {this.state.Especialist.map(
+              board =>
+                board.sabado.filter(el => el.value).length && (
+                  <div className="col-12 col-sm-12 col-lg-12">
+                    <div class="card">
+                      <div className="card-header">
+                        <h4 className="fontColor">{board.nome}</h4>
+                      </div>
+                      <div className="card-header row">
+                        <div class="col mb-4 mb-lg-0 text-center">
+                          <div class="row">
+                            {board.sabado.map(board => (
+                              <div className="button-hour">
+                                {board.value && (
+                                  <button
+                                    type="submit"
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </button>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                )
+            )}
           </div>
         </Container>
       </div>
