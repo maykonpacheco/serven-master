@@ -24,7 +24,7 @@ import { AuthContext } from "./Auth.js";
     const { currentUser } = useContext(AuthContext);
   
     if (currentUser) {
-      return <Redirect to="/" />;
+      return <Redirect to="/finalizar-agendamento" />;
     }
   
     return (

@@ -86,12 +86,17 @@ class Servicos extends Component {
                             {board.domingo.map(board => (
                               <div className="button-hour">
                                 {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
+                                  <Link
+                                  to={{
+                                    pathname: "/finalizar-agendamento",
+                                    search: "?especialidade=" + board.especialidade
+                                  }}
+                                
+                                  className="btn btn-primary"
                                   >
+                                    
                                     {board.hour}
-                                  </button>
+                                  </Link>
                                 )}
                               </div>
                             ))}

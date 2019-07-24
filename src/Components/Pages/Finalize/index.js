@@ -1,11 +1,67 @@
 import React, { Component } from "react";
-
+import firebase from "../../../firebase";
 //import './styles.css';
 
 import { Container } from "react-bootstrap";
 import Navbar from "../../Navbar";
 //import Footer from "../../Footer";
+import queryString from "query-string";
+
 class Finalize extends Component {
+
+  constructor(props) {
+    super(props);
+    this.ref = firebase.firestore().collection("Especialist");
+    this.unsubscribe = null;
+    this.state = {
+      Especialist: [],
+      key: ""
+    };
+  }
+
+  onCollectionUpdate = querySnapshot => {
+    const Especialist = [];
+    querySnapshot.forEach(doc => {
+      const {
+        nome,
+        especialidade,
+        segunda,
+        domingo,
+        terca,
+        quarta,
+        quinta,
+        sexta,
+        sabado
+      } = doc.data();
+      Especialist.push({
+        key: doc.id,
+        doc, // DocumentSnapshot
+        nome,
+        especialidade,
+        domingo,
+        segunda,
+        terca,
+        quarta,
+        quinta,
+        sexta,
+        sabado
+      });
+      console.log(doc.id, " => ", doc.data());
+    });
+    console.log(Especialist);
+    this.setState({
+      Especialist
+    });
+  };
+
+  componentDidMount() {
+    const values = queryString.parse(this.props.location.search);
+    const { especialidade } = values;
+    const doctorsRef = firebase.firestore().collection("Especialist");
+    const query = doctorsRef.where("especialidade", "==", especialidade);
+    query.get().then(this.onCollectionUpdate);
+  }
+
   render() {
     return (
       <div>
@@ -15,20 +71,27 @@ class Finalize extends Component {
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
              Resumo
             </h5>
+            {this.state.Especialist.map(
+              board =>
+                board.domingo.filter(el => el.value).length && (
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    <h4 className="fontColor">Consulta</h4>
+                  {board.domingo.map(board => (
+                    <h4 className="fontColor">{board.especialidade}</h4>
+                    ))}
                   </div>
-                    <div className="card-header row">
-                      <div class="col mb-4 mb-lg-0 text-center">
-                        <div class="row">
-                          <div className="button-hour">
-                          <p>Psiquiatria - Segunda, 15/04 às 07:00</p>      
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  
+                </div>
+              </div>
+               ))}
+          </div>
+          <div className="centerService">
+              <div className="col-12 col-sm-12 col-lg-12">
+                <div class="card">
+                  <div className="card-header">
+                    <h4 className="fontColor">Médico: João Bosco da Silva </h4>
+                  </div>
                 </div>
               </div>
           </div>
@@ -36,39 +99,15 @@ class Finalize extends Component {
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    <h4 className="fontColor">Especialista</h4>
+                    <h4 className="fontColor">Valor do serviço:  R$74,00</h4>
                   </div>
-                    <div className="card-header row">
-                      <div class="col mb-4 mb-lg-0 text-center">
-                        <div class="row">
-                          <div className="button-hour">
-                          <p>Maykon Pacheco - CPF: 04825051170</p>      
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  
                 </div>
               </div>
-          </div>
-          <div className="centerService">
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">Valor do serviço:</h4>
-                  </div>
-                    <div className="card-header row">
-                      <div class="col mb-4 mb-lg-0 text-center">
-                        <div class="row">
-                          <div className="button-hour">
-                          <h5>R$74,00</h5>      
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-              </div>
-          </div>
-        <button className="btn btn-primary">Finalizar Agendamento</button>
+          </div >
+          <div className="text-center">
+        <button className="btn btn-primary text-center">Finalizar Agendamento</button>
+        </div>
         </Container>
       </div>
     );

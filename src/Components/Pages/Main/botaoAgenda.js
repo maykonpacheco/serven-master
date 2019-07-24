@@ -57,10 +57,11 @@ class BotaoAgenda extends Component {
   }
 
   render() {
+    
     return (
       <Container>
         {this.state.Especialist.map(
-          item => Object.values(item.especialidade).filter(el => el.value).length && (
+          item => (
               <Link
                 to={{
                   pathname: "/servicos",

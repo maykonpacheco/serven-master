@@ -56,7 +56,6 @@ class Consultas extends Component {
                     R$ {board.author}
                   </a>
                   
-                  {console.log("teste =>", <BotaoAgenda />)}
                   {<BotaoAgenda /> !== board.title && <BotaoAgenda /> }
                   
                 </div>
