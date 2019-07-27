@@ -55,9 +55,9 @@ class Consultas extends Component {
                   <a href="#" className="btn">
                     R$ {board.author}
                   </a>
-                  
-                  {<BotaoAgenda /> !== board.title && <BotaoAgenda /> }
-                  
+                 <div>
+                   <BotaoAgenda /> 
+                 </div> 
                 </div>
               </div>
             </div>

@@ -46,9 +46,9 @@ class Servicos extends Component {
         sexta,
         sabado
       });
-      console.log(doc.id, " => ", doc.data());
+     // console.log(doc.id, " => ", doc.data());
     });
-    console.log(Especialist);
+   console.log(Especialist);
     this.setState({
       Especialist
     });
@@ -60,9 +60,11 @@ class Servicos extends Component {
     const doctorsRef = firebase.firestore().collection("Especialist");
     const query = doctorsRef.where("especialidade", "==", especialidade);
     query.get().then(this.onCollectionUpdate);
+    
   }
 
   render() {
+    
     return (
       <div>
         <Navbar />
@@ -71,7 +73,7 @@ class Servicos extends Component {
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
               Domingo
             </h5>
-            {console.log("Aqui =>2", this.state.Especialist)}
+          
             {this.state.Especialist.map(
               board =>
                 board.domingo.filter(el => el.value).length && (
@@ -89,12 +91,13 @@ class Servicos extends Component {
                                   <Link
                                   to={{
                                     pathname: "/finalizar-agendamento",
-                                    search: "?especialidade=" + board.especialidade
+                                    search: "?nome=" + this.state.Especialist[0].nome,
+                                    hash: "?especialidade=" + this.state.Especialist[0].especialidade,
+                                    data: "?data=" + this.state.Especialist[0].domingo
                                   }}
                                 
                                   className="btn btn-primary"
                                   >
-                                    
                                     {board.hour}
                                   </Link>
                                 )}
@@ -126,12 +129,18 @@ class Servicos extends Component {
                             {board.segunda.map(board => (
                               <div className="button-hour">
                                 {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </button>
+                                   <Link
+                                   to={{
+                                     pathname: "/finalizar-agendamento",
+                                     search: "?nome=" + this.state.Especialist[0].nome,
+                                     hash: "?data=" + this.state.Especialist[0].domingo[0].hour
+                              
+                                   }}
+                                 
+                                   className="btn btn-primary"
+                                   >
+                                     {board.hour}
+                                   </Link>
                                 )}
                               </div>
                             ))}

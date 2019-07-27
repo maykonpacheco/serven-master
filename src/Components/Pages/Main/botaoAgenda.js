@@ -18,7 +18,6 @@ class BotaoAgenda extends Component {
     };
   }
 
-
   onCollectionUpdate = querySnapshot => {
     const Especialist = [];
     querySnapshot.forEach(doc => {
@@ -47,6 +46,7 @@ class BotaoAgenda extends Component {
         sabado
       });
     });
+    
     this.setState({
       Especialist
     });
@@ -54,26 +54,27 @@ class BotaoAgenda extends Component {
 
   componentDidMount() {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+    
   }
 
   render() {
+    if (!this.state.Especialist.length) {
+      return null;
+      }
+    let especialidade = this.state.Especialist[0].especialidade;
     
     return (
       <Container>
-        {this.state.Especialist.map(
-          item => (
-              <Link
-                to={{
-                  pathname: "/servicos",
-                  search: "?especialidade=" + item.especialidade
-                }}
-                className="btn btn-primary"
-              >
-                 {console.log("Button", item.especialidade)}
-                Agendar
-              </Link>
-            )
-        )}
+        <Link
+          to={{
+            pathname: "/servicos",
+            search: "?especialidade=" + especialidade
+          }}
+          className="btn btn-primary"
+        >
+          {console.log(especialidade)}
+          Agendar
+        </Link>
       </Container>
     );
   }

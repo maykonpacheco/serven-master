@@ -46,9 +46,9 @@ class Finalize extends Component {
         sexta,
         sabado
       });
-      console.log(doc.id, " => ", doc.data());
+      //console.log(doc.id, " => ", doc.data());
     });
-    console.log(Especialist);
+    //console.log(Especialist);
     this.setState({
       Especialist
     });
@@ -56,13 +56,15 @@ class Finalize extends Component {
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
-    const { especialidade } = values;
-    const doctorsRef = firebase.firestore().collection("Especialist");
-    const query = doctorsRef.where("especialidade", "==", especialidade);
+    const { nome } = values;
+    const resumoRef = firebase.firestore().collection("Especialist");
+    const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
+    //console.log("Teste", this.props)
   }
 
   render() {
+   console.log(this.props)
     return (
       <div>
         <Navbar />
@@ -70,31 +72,41 @@ class Finalize extends Component {
         <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
              Resumo
-            </h5>
-            {this.state.Especialist.map(
-              board =>
-                board.domingo.filter(el => el.value).length && (
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                  {board.domingo.map(board => (
-                    <h4 className="fontColor">{board.especialidade}</h4>
-                    ))}
-                  </div>
-                  
-                </div>
-              </div>
-               ))}
+            </h5>         
           </div>
+          {this.state.Especialist.map(board => (
           <div className="centerService">
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    <h4 className="fontColor">Médico: João Bosco da Silva </h4>
+                    <h4 className="fontColor">Especialidade: {board.especialidade}</h4>
+                  </div>
+                </div>
+              </div>
+           </div>  
+           ))}   
+            {this.state.Especialist.map(board => (
+          <div className="centerService">
+              <div className="col-12 col-sm-12 col-lg-12">
+                <div class="card">
+                  <div className="card-header">
+                    <h4 className="fontColor">Data e hora: Quinta-feira {board.domingo[0].hour}</h4>
+                    </div>
+                </div>
+              </div>
+          </div>
+             ))} 
+           {this.state.Especialist.map(board => (
+          <div className="centerService">
+              <div className="col-12 col-sm-12 col-lg-12">
+                <div class="card">
+                  <div className="card-header">
+                    <h4 className="fontColor">Profissional: {board.nome} </h4>
                   </div>
                 </div>
               </div>
           </div>
+      ))} 
           <div className="centerService">
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
@@ -105,9 +117,11 @@ class Finalize extends Component {
                 </div>
               </div>
           </div >
+         
           <div className="text-center">
         <button className="btn btn-primary text-center">Finalizar Agendamento</button>
         </div>
+        
         </Container>
       </div>
     );
