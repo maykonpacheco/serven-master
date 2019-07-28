@@ -92,12 +92,12 @@ class Servicos extends Component {
                                   to={{
                                     pathname: "/finalizar-agendamento",
                                     search: "?nome=" + this.state.Especialist[0].nome,
-                                    hash: "?especialidade=" + this.state.Especialist[0].especialidade,
-                                    data: "?data=" + this.state.Especialist[0].domingo
+                                    hash: "?data=" + this.state.Especialist[0].domingo[0].hour
                                   }}
                                 
                                   className="btn btn-primary"
                                   >
+                                    {console.log("OLá", this.state.Especialist)}
                                     {board.hour}
                                   </Link>
                                 )}
@@ -133,7 +133,7 @@ class Servicos extends Component {
                                    to={{
                                      pathname: "/finalizar-agendamento",
                                      search: "?nome=" + this.state.Especialist[0].nome,
-                                     hash: "?data=" + this.state.Especialist[0].domingo[0].hour
+                                     hash: "?data=" + this.state.Especialist[0].segunda[0].hour
                               
                                    }}
                                  

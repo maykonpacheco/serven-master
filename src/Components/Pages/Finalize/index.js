@@ -15,7 +15,7 @@ class Finalize extends Component {
     this.unsubscribe = null;
     this.state = {
       Especialist: [],
-      key: ""
+      key: "",
     };
   }
 
@@ -60,11 +60,15 @@ class Finalize extends Component {
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
-    //console.log("Teste", this.props)
+
+
+    const parsedHash = queryString.parse(this.props.location.hash);  
+    const { datas } = parsedHash;
+  
   }
 
   render() {
-   console.log(this.props)
+  
     return (
       <div>
         <Navbar />
@@ -90,7 +94,8 @@ class Finalize extends Component {
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    <h4 className="fontColor">Data e hora: Quinta-feira {board.domingo[0].hour}</h4>
+                    
+                    <h4 className="fontColor">Data e hora: Quinta-feira</h4>
                     </div>
                 </div>
               </div>
