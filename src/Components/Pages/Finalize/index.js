@@ -16,7 +16,36 @@ class Finalize extends Component {
     this.state = {
       Especialist: [],
       key: "",
+      especialidade: "",
+      Data: '',
+      Hora: '',
+      especialista: '',
+      valor: ''
     };
+  }
+
+  onChange = (e) => {
+    const state = this.state
+    state[e.target.name] = e.target.value;
+    this.setState(state);
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    const { especialidade } = this.state;
+
+    this.ref.add({
+      especialidade
+    }).then((docRef) => {
+      this.setState({
+        especialidade: ''
+      });
+      this.props.history.push("/")
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
   }
 
   onCollectionUpdate = querySnapshot => {
@@ -60,19 +89,14 @@ class Finalize extends Component {
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
-
-
-    const parsedHash = queryString.parse(this.props.location.hash);  
-    const { datas } = parsedHash;
-  
   }
 
   render() {
-  
     return (
       <div>
         <Navbar />
         <Container>
+          <form onSubmit={this.onSubmit}>
         <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
              Resumo
@@ -94,8 +118,8 @@ class Finalize extends Component {
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    
-                    <h4 className="fontColor">Data e hora: Quinta-feira</h4>
+                    {console.log("Aqui", board.domingo[0].hour)}
+                    <h4 className="fontColor">Data e hora: Quinta-feira {board.hour}</h4>
                     </div>
                 </div>
               </div>
@@ -124,11 +148,12 @@ class Finalize extends Component {
           </div >
          
           <div className="text-center">
-        <button className="btn btn-primary text-center">Finalizar Agendamento</button>
+        <button  type="submit" className="btn btn-primary text-center">Finalizar Agendamento</button>
         </div>
-        
+        </form>
         </Container>
       </div>
+      
     );
   }
 }

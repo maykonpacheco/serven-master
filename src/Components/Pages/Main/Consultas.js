@@ -36,18 +36,22 @@ class Consultas extends Component {
     this.setState({
       boards
     });
-    //console.log("Aqui", boards)
+   
   };
 
   componentDidMount() {
+    
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
   render() {
+
+
     return (
       <Container>
-        {this.state.boards.map(board => (
-          <div className="col-12 col-sm-12 col-lg-12">
+        {this.state.boards.map((board, index )=> (
+                
+          <div  className="col-12 col-sm-12 col-lg-12">
             <div className="card">
               <div className="card-header">
                 <h4 className="fontColor">{board.title}</h4>
@@ -55,14 +59,18 @@ class Consultas extends Component {
                   <a href="#" className="btn">
                     R$ {board.author}
                   </a>
-                 <div>
-                   <BotaoAgenda /> 
-                 </div> 
                 </div>
+                
+                <div className="card-header-action">
+                 
+                        <BotaoAgenda data={board} />
+
+                 </div>
               </div>
             </div>
           </div>
         ))}
+        
       </Container>
     );
   }

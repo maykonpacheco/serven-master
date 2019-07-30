@@ -5,7 +5,7 @@ import "./styles.css";
 import Navbar from "../../Navbar";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
-
+import BotaoAgenda from "../Main/botaoAgenda";
 import { Container, Row, Button, Card } from "react-bootstrap";
 
 class Servicos extends Component {
@@ -59,16 +59,14 @@ class Servicos extends Component {
     const { especialidade } = values;
     const doctorsRef = firebase.firestore().collection("Especialist");
     const query = doctorsRef.where("especialidade", "==", especialidade);
-    query.get().then(this.onCollectionUpdate);
-    
+    query.get().then(this.onCollectionUpdate); 
   }
-
   render() {
-    
     return (
       <div>
         <Navbar />
         <Container>
+        
           <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
               Domingo
@@ -92,14 +90,17 @@ class Servicos extends Component {
                                   to={{
                                     pathname: "/finalizar-agendamento",
                                     search: "?nome=" + this.state.Especialist[0].nome,
-                                    hash: "?data=" + this.state.Especialist[0].domingo[0].hour
+                                    hash: "?data=" + board.domingo
                                   }}
                                 
                                   className="btn btn-primary"
+                            
                                   >
                                     {console.log("OLá", this.state.Especialist)}
                                     {board.hour}
+                                  
                                   </Link>
+                                  
                                 )}
                               </div>
                             ))}
@@ -317,17 +318,21 @@ class Servicos extends Component {
                                     {board.hour}
                                   </button>
                                 )}
+                                 
                               </div>
+                              
                             ))}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                 
                 )
             )}
           </div>
         </Container>
+        
       </div>
     );
   }

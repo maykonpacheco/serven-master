@@ -6,6 +6,7 @@ import "./styles.css";
 
 import "../../../assets/css/style.css";
 import "../../../assets/css/components.css";
+import Consulta from "./Consultas";
 
 class BotaoAgenda extends Component {
   constructor(props) {
@@ -58,26 +59,29 @@ class BotaoAgenda extends Component {
   }
 
   render() {
-    if (!this.state.Especialist.length) {
-      return null;
-      }
-    let especialidade = this.state.Especialist[0].especialidade;
-    
+   
+     
+    let especialidade = this.props.data.title; 
+  
     return (
       <Container>
+       
         <Link
+
           to={{
             pathname: "/servicos",
             search: "?especialidade=" + especialidade
           }}
           className="btn btn-primary"
         >
-          {console.log(especialidade)}
+         
           Agendar
         </Link>
       </Container>
+    
     );
   }
 }
 
 export default BotaoAgenda;
+//{console.log(especialidade === this.props.data.title ? "SIM" : "NÃO")}
