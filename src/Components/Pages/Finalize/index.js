@@ -16,11 +16,6 @@ class Finalize extends Component {
     this.state = {
       Especialist: [],
       key: "",
-      especialidade: "",
-      Data: '',
-      Hora: '',
-      especialista: '',
-      valor: ''
     };
   }
 
@@ -89,9 +84,12 @@ class Finalize extends Component {
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
+    //console.log("Nome", nome)
   }
 
   render() {
+    
+
     return (
       <div>
         <Navbar />
@@ -113,13 +111,14 @@ class Finalize extends Component {
               </div>
            </div>  
            ))}   
-            {this.state.Especialist.map(board => (
+            {this.state.Especialist.map(i => (
           <div className="centerService">
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    {console.log("Aqui", board.domingo[0].hour)}
-                    <h4 className="fontColor">Data e hora: Quinta-feira {board.hour}</h4>
+                    
+                    <h4 className="fontColor">Data e hora: Quinta-feira </h4>
+                        
                     </div>
                 </div>
               </div>
@@ -136,6 +135,7 @@ class Finalize extends Component {
               </div>
           </div>
       ))} 
+        {console.log("board", this.props.boards)}
           <div className="centerService">
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">

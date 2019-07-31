@@ -6,7 +6,7 @@ import "./styles.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import queryString from "query-string";
 import BotaoAgenda from "./botaoAgenda";
-
+import Navbar from '../../Navbar';
 import "../../../assets/css/style.css";
 import "../../../assets/css/components.css";
 
@@ -36,22 +36,17 @@ class Consultas extends Component {
     this.setState({
       boards
     });
-   
   };
 
   componentDidMount() {
-    
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
   render() {
-
-
     return (
       <Container>
-        {this.state.boards.map((board, index )=> (
-                
-          <div  className="col-12 col-sm-12 col-lg-12">
+        {this.state.boards.map((board, index) => (
+          <div className="col-12 col-sm-12 col-lg-12">
             <div className="card">
               <div className="card-header">
                 <h4 className="fontColor">{board.title}</h4>
@@ -60,17 +55,13 @@ class Consultas extends Component {
                     R$ {board.author}
                   </a>
                 </div>
-                
                 <div className="card-header-action">
-                 
-                        <BotaoAgenda data={board} />
-
-                 </div>
+                  <BotaoAgenda data={board} />
+                </div>
               </div>
             </div>
           </div>
         ))}
-        
       </Container>
     );
   }

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import queryString from "query-string";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container, Row, Button, Card } from "react-bootstrap";
+import { Hash } from "crypto";
 
 class Servicos extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ class Servicos extends Component {
       });
      // console.log(doc.id, " => ", doc.data());
     });
-   console.log(Especialist);
+   //console.log(Especialist);
     this.setState({
       Especialist
     });
@@ -62,7 +63,7 @@ class Servicos extends Component {
     query.get().then(this.onCollectionUpdate); 
   }
   render() {
-
+    
 
     return (
       <div>
@@ -75,30 +76,30 @@ class Servicos extends Component {
             </h5>
           
             {this.state.Especialist.map(
-              board =>
-                board.domingo.filter(el => el.value).length && (
+              i =>
+                i.domingo.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.domingo.map(board => (
+                            {i.domingo.map(board => (
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
                                   to={{
                                     pathname: "/finalizar-agendamento",
-                                    search: "?nome=" + this.state.Especialist[0].nome,
-                                    hash: "?data=" + this.state.Especialist[0].domingo[0].hour[0]
+                                    search: "?nome=" + i.nome,
+                                    hash: "?data=" + board.hour
                                   }}
                                 
                                   className="btn btn-primary"
                             
                                   >
-                                    {console.log("OLá", this.state.Especialist)}
+                                 
                                     {board.hour}
                                   
                                   </Link>
@@ -119,24 +120,23 @@ class Servicos extends Component {
               Segunda
             </h5>
             {this.state.Especialist.map(
-              board =>
-                board.segunda.filter(el => el.value).length && (
+              i =>
+                i.segunda.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.segunda.map(board => (
-                              <div className="button-hour">
+                            {i.segunda.map(board => (
+                              <div  className="button-hour">
                                 {board.value && (
                                    <Link
                                    to={{
                                      pathname: "/finalizar-agendamento",
-                                     search: "?nome=" + this.state.Especialist[0].nome,
-                                     hash: "?data=" + this.state.Especialist[0].segunda[0].hour
+                                     search: "?nome=" + i.nome
                               
                                    }}
                                  
@@ -160,27 +160,32 @@ class Servicos extends Component {
               Terça
             </h5>
             {this.state.Especialist.map(
-              board =>
-                board.terca.filter(el => el.value).length && (
+              i =>
+                i.terca.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.terca.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </button>
-                                )}
-                              </div>
+                            {i.terca.map(board => (
+                              <div  className="button-hour">
+                              {board.value && (
+                                 <Link
+                                 to={{
+                                   pathname: "/finalizar-agendamento",
+                                   search: "?nome=" + i.nome
+                            
+                                 }}
+                               
+                                 className="btn btn-primary"
+                                 >
+                                   {board.hour}
+                                 </Link>
+                              )}
+                            </div>
                             ))}
                           </div>
                         </div>
@@ -195,27 +200,32 @@ class Servicos extends Component {
               Quarta
             </h5>
             {this.state.Especialist.map(
-              board =>
-                board.quarta.filter(el => el.value).length && (
+              i =>
+                i.quarta.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.quarta.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </button>
-                                )}
-                              </div>
+                            {i.quarta.map(board => (
+                              <div  className="button-hour">
+                              {board.value && (
+                                 <Link
+                                 to={{
+                                   pathname: "/finalizar-agendamento",
+                                   search: "?nome=" + i.nome
+                            
+                                 }}
+                               
+                                 className="btn btn-primary"
+                                 >
+                                   {board.hour}
+                                 </Link>
+                              )}
+                            </div>
                             ))}
                           </div>
                         </div>
@@ -230,27 +240,32 @@ class Servicos extends Component {
               Quinta
             </h5>
             {this.state.Especialist.map(
-              board =>
-                board.quinta.filter(el => el.value).length && (
+              i =>
+                i.quinta.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.quinta.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </button>
-                                )}
-                              </div>
+                            {i.quinta.map(board => (
+                              <div  className="button-hour">
+                              {board.value && (
+                                 <Link
+                                 to={{
+                                   pathname: "/finalizar-agendamento",
+                                   search: "?nome=" + i.nome
+                            
+                                 }}
+                               
+                                 className="btn btn-primary"
+                                 >
+                                   {board.hour}
+                                 </Link>
+                              )}
+                            </div>
                             ))}
                           </div>
                         </div>
@@ -265,27 +280,32 @@ class Servicos extends Component {
               Sexta
             </h5>
             {this.state.Especialist.map(
-              board =>
-                board.sexta.filter(el => el.value).length && (
+              i =>
+                i.sexta.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.sexta.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </button>
-                                )}
-                              </div>
+                            {i.sexta.map(board => (
+                             <div  className="button-hour">
+                             {board.value && (
+                                <Link
+                                to={{
+                                  pathname: "/finalizar-agendamento",
+                                  search: "?nome=" + i.nome
+                           
+                                }}
+                              
+                                className="btn btn-primary"
+                                >
+                                  {board.hour}
+                                </Link>
+                             )}
+                           </div>
                             ))}
                           </div>
                         </div>
@@ -300,29 +320,32 @@ class Servicos extends Component {
               Sabado
             </h5>
             {this.state.Especialist.map(
-              board =>
-                board.sabado.filter(el => el.value).length && (
+              i =>
+                i.sabado.filter(el => el.value).length && (
                   <div className="col-12 col-sm-12 col-lg-12">
                     <div class="card">
                       <div className="card-header">
-                        <h4 className="fontColor">{board.nome}</h4>
+                        <h4 className="fontColor">{i.nome}</h4>
                       </div>
                       <div className="card-header row">
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
-                            {board.sabado.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <button
-                                    type="submit"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </button>
-                                )}
-                                 
-                              </div>
+                            {i.sabado.map(board => (
+                             <div  className="button-hour">
+                             {board.value && (
+                                <Link
+                                to={{
+                                  pathname: "/finalizar-agendamento",
+                                  search: "?nome=" + i.nome
+                           
+                                }}
                               
+                                className="btn btn-primary"
+                                >
+                                  {board.hour}
+                                </Link>
+                             )}
+                           </div>
                             ))}
                           </div>
                         </div>

@@ -5,7 +5,6 @@ import firebase from "../../../firebase";
 //import Search from '../../Components/Search';
 import Consultas from "./Consultas";
 import Navbar from "../../Navbar";
-//import Footer from "../../Footer";
 
 class Main extends Component {
   constructor(props) {
