@@ -62,6 +62,8 @@ class Servicos extends Component {
     query.get().then(this.onCollectionUpdate); 
   }
   render() {
+
+
     return (
       <div>
         <Navbar />
@@ -90,7 +92,7 @@ class Servicos extends Component {
                                   to={{
                                     pathname: "/finalizar-agendamento",
                                     search: "?nome=" + this.state.Especialist[0].nome,
-                                    hash: "?data=" + board.domingo
+                                    hash: "?data=" + this.state.Especialist[0].domingo[0].hour[0]
                                   }}
                                 
                                   className="btn btn-primary"
