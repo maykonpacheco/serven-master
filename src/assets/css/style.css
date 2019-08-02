@@ -658,7 +658,7 @@ select.form-control:not([size]):not([multiple]) {
     .card .card-header h4 {
       font-size: 16px;
       line-height: 28px;
-      color: #f4b60b;
+      color: #0fa8a2;
       padding-right: 10px;
       margin-bottom: 0; }
       .card .card-header h4 + .card-header-action,
@@ -734,7 +734,7 @@ select.form-control:not([size]):not([multiple]) {
     background-repeat: no-repeat;
     background-position: center; }
   .card.card-primary {
-    border-top: 2px solid #f4b60b; }
+    border-top: 2px solid #0fa8a2; }
   .card.card-secondary {
     border-top: 2px solid #34395e; }
   .card.card-success {
@@ -742,7 +742,7 @@ select.form-control:not([size]):not([multiple]) {
   .card.card-danger {
     border-top: 2px solid #fc544b; }
   .card.card-warning {
-    border-top: 2px solid #ffa426; }
+    border-top: 2px solid #0fa8a2; }
   .card.card-info {
     border-top: 2px solid #3abaf4; }
   .card.card-dark {
@@ -1328,12 +1328,12 @@ h6 .badge {
 
 .btn-primary, .btn-primary.disabled {
   /*box-shadow: 0 2px 6px #f4b60b;*/
-  background-color: #f4b60b;
-  border-color: #f4b60b; }
+  background-color: #0fa8a2;
+  border-color: #0fa8a2; }
   .btn-primary:focus, .btn-primary.disabled:focus {
-    background-color: #f4b60b !important; }
+    background-color: #0fa8a2 !important; }
     .btn-primary:focus:active, .btn-primary.disabled:focus:active {
-      background-color: #f4b60b !important; }
+      background-color: #0fa8a2 !important; }
   .btn-primary:active, .btn-primary:hover, .btn-primary.disabled:active, .btn-primary.disabled:hover {
     background-color: #5f6368 !important; }
 

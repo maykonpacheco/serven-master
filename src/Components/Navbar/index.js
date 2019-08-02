@@ -9,6 +9,7 @@ import AppsIcon from "@material-ui/icons/Apps";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import firebase from "../../firebase";
+import logo from '../../assets/img//logo.png';
 
 import { Link } from "react-router-dom";
 import "../../assets/css/style.css";
@@ -23,7 +24,9 @@ class Navbar extends Component {
         <div class="section">
           <div class="section-header">
             <Link to="/">
-              <h1>Seven</h1>
+            <div>
+              <img src={logo} alt="logo" width="100" />
+            </div>
             </Link>
             <ul class="nav justify-content-end">
               <li class="nav-item">

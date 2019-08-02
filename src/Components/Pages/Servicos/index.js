@@ -75,7 +75,7 @@ class Servicos extends Component {
         <Container>
           <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
-              Domingo
+              Domingo, 04 Agosto
             </h5>
 
             {this.state.Especialist.map(
@@ -117,7 +117,7 @@ class Servicos extends Component {
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Segunda
+              Segunda, 05 Agosto
             </h5>
             {this.state.Especialist.map(
               i =>
@@ -156,7 +156,7 @@ class Servicos extends Component {
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Terça
+              Terça, 06 Agosto
             </h5>
             {this.state.Especialist.map(
               i =>
@@ -194,7 +194,7 @@ class Servicos extends Component {
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Quarta
+              Quarta, 07 Agosto
             </h5>
             {this.state.Especialist.map(
               i =>
@@ -232,7 +232,7 @@ class Servicos extends Component {
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Quinta
+              Quinta, 08 Agosto
             </h5>
             {this.state.Especialist.map(
               i =>
@@ -270,7 +270,7 @@ class Servicos extends Component {
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Sexta
+              Sexta, 09 Agosto
             </h5>
             {this.state.Especialist.map(
               i =>
@@ -308,7 +308,7 @@ class Servicos extends Component {
           </div>
           <div className="centerService">
             <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Sabado
+              Sabado, 10 Agosto
             </h5>
             {this.state.Especialist.map(
               i =>
