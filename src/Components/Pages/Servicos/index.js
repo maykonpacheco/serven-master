@@ -95,13 +95,14 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "domingo"
                                       
                                  
                                     }}
                                     className="btn btn-primary"
                                   >
-                                    {board.hour}{console.log("valor", this.state.Especialist)}
+                                      
+                                    {board.hour}
                                   </Link>
                                 )}
                               </div>
@@ -135,10 +136,11 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Segunda-feira"
                                     }}
                                     className="btn btn-primary"
                                   >
+                                  
                                     {board.hour}
                                   </Link>
                                 )}
@@ -173,7 +175,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Terça-feira"
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -211,7 +213,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Quarta-feira"
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -249,7 +251,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Quinta-feira"
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -287,7 +289,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Sexta"
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -325,7 +327,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
+                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Sabado"
                                     }}
                                     className="btn btn-primary"
                                   >

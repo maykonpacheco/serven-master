@@ -82,7 +82,6 @@ class Finalize extends Component {
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
-  
     const { nome } = values;
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
@@ -120,8 +119,8 @@ class Finalize extends Component {
                 <div class="card">
                   <div className="card-header">
                     
-                    <h4 className="fontColor">Data e hora: Quinta-feira </h4>
-                        
+                    <h4 className="fontColor">Data e hora: Quinta-feira, 18 Julho às </h4>
+                    
                     </div>
                 </div>
               </div>
@@ -144,7 +143,7 @@ class Finalize extends Component {
               <div class="card">
                 <div className="card-header">
                   <h4 className="fontColor">Valor do serviço: {board.valor}</h4>
-                  {console.log(this.state.Especialist)}
+                 
                 </div>
               </div>
             </div>
