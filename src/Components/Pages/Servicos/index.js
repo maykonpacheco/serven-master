@@ -95,7 +95,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "domingo"
+                                      search: "?nome=" + i.nome 
                                       
                                  
                                     }}
@@ -136,7 +136,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Segunda-feira"
+                                      search: "?nome=" + i.nome 
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -175,7 +175,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Terça-feira"
+                                      search: "?nome=" + i.nome 
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -213,7 +213,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Quarta-feira"
+                                      search: "?nome=" + i.nome 
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -251,7 +251,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Quinta-feira"
+                                      search: "?nome=" + i.nome 
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -289,7 +289,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Sexta"
+                                      search: "?nome=" + i.nome 
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -327,7 +327,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "Sabado"
+                                      search: "?nome=" + i.nome 
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -351,3 +351,5 @@ class Servicos extends Component {
 }
 
 export default Servicos;
+
+//search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "domingo"

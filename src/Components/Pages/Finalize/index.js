@@ -119,7 +119,7 @@ class Finalize extends Component {
                 <div class="card">
                   <div className="card-header">
                     
-                    <h4 className="fontColor">Data e hora: Quinta-feira, 18 Julho às </h4>
+                    <h4 className="fontColor">Data e hora: Segunda, 05 Agosto às 15:00 </h4>
                     
                     </div>
                 </div>

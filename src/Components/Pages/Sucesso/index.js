@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import './styles.css';
+import './styles.css';
 //import Consultas from './Consultas';
 import Navbar from "../../Navbar";
 import { Container } from "@material-ui/core";
