@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import firebase from "../../../firebase";
 //import './styles.css';
-
+import { connect } from 'react-redux';
 import { Container } from "react-bootstrap";
 import Navbar from "../../Navbar";
 //import Footer from "../../Footer";
 import queryString from "query-string";
-
+import Valor from './valor';
 class Finalize extends Component {
 
   constructor(props) {
@@ -55,7 +55,8 @@ class Finalize extends Component {
         quarta,
         quinta,
         sexta,
-        sabado
+        sabado,
+        valor
       } = doc.data();
       Especialist.push({
         key: doc.id,
@@ -68,7 +69,8 @@ class Finalize extends Component {
         quarta,
         quinta,
         sexta,
-        sabado
+        sabado,
+        valor
       });
       //console.log(doc.id, " => ", doc.data());
     });
@@ -80,11 +82,12 @@ class Finalize extends Component {
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
+  
     const { nome } = values;
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
-    //console.log("Nome", nome)
+    console.log("valor", this.props.location.search)
   }
 
   render() {
@@ -135,18 +138,18 @@ class Finalize extends Component {
               </div>
           </div>
       ))} 
-        {console.log("board", this.props.boards)}
-          <div className="centerService">
-              <div className="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div className="card-header">
-                    <h4 className="fontColor">Valor do serviço:  R$74,00</h4>
-                  </div>
-                  
+      {this.state.Especialist.map(board => (
+      <div className="centerService">
+            <div className="col-12 col-sm-12 col-lg-12">
+              <div class="card">
+                <div className="card-header">
+                  <h4 className="fontColor">Valor do serviço: {board.valor}</h4>
+                  {console.log(this.state.Especialist)}
                 </div>
               </div>
-          </div >
-         
+            </div>
+          </div>
+      ))} 
           <div className="text-center">
         <button  type="submit" className="btn btn-primary text-center">Finalizar Agendamento</button>
         </div>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import firebase from "../../../firebase";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
@@ -10,6 +9,8 @@ import "../../../assets/css/components.css";
 class BotaoAgenda extends Component {
   render() {
     let especialidade = this.props.data.title;
+    let valor = this.props.data.author;
+
 
     return (
       <Container>

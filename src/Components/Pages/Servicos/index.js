@@ -6,8 +6,7 @@ import Navbar from "../../Navbar";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
 import BotaoAgenda from "../Main/botaoAgenda";
-import { Container, Row, Button, Card } from "react-bootstrap";
-import { Hash } from "crypto";
+import { Container } from "react-bootstrap";
 
 class Servicos extends Component {
   constructor(props) {
@@ -26,18 +25,23 @@ class Servicos extends Component {
       const {
         nome,
         especialidade,
+        valor,
         segunda,
         domingo,
         terca,
         quarta,
         quinta,
         sexta,
-        sabado
+        sabado,
+        crm
+        
       } = doc.data();
       Especialist.push({
         key: doc.id,
         doc, // DocumentSnapshot
         nome,
+        valor,
+        crm,
         especialidade,
         domingo,
         segunda,
@@ -45,11 +49,12 @@ class Servicos extends Component {
         quarta,
         quinta,
         sexta,
-        sabado
+        sabado,
+        
       });
-     // console.log(doc.id, " => ", doc.data());
+     //console.log(doc.id, " => ", doc.data());
     });
-   //console.log(Especialist);
+    //console.log(Especialist);
     this.setState({
       Especialist
     });
@@ -60,21 +65,19 @@ class Servicos extends Component {
     const { especialidade } = values;
     const doctorsRef = firebase.firestore().collection("Especialist");
     const query = doctorsRef.where("especialidade", "==", especialidade);
-    query.get().then(this.onCollectionUpdate); 
+    query.get().then(this.onCollectionUpdate);
+   // console.log("valor ", this.props.location.hash)
   }
   render() {
-    
-
     return (
       <div>
         <Navbar />
         <Container>
-        
           <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
               Domingo
             </h5>
-          
+
             {this.state.Especialist.map(
               i =>
                 i.domingo.filter(el => el.value).length && (
@@ -90,20 +93,16 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                  to={{
-                                    pathname: "/finalizar-agendamento",
-                                    search: "?nome=" + i.nome,
-                                    hash: "?data=" + board.hour
-                                  }}
-                                
-                                  className="btn btn-primary"
-                            
-                                  >
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                      
                                  
-                                    {board.hour}
-                                  
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}{console.log("valor", this.state.Especialist)}
                                   </Link>
-                                  
                                 )}
                               </div>
                             ))}
@@ -131,19 +130,17 @@ class Servicos extends Component {
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
                             {i.segunda.map(board => (
-                              <div  className="button-hour">
+                              <div className="button-hour">
                                 {board.value && (
-                                   <Link
-                                   to={{
-                                     pathname: "/finalizar-agendamento",
-                                     search: "?nome=" + i.nome
-                              
-                                   }}
-                                 
-                                   className="btn btn-primary"
-                                   >
-                                     {board.hour}
-                                   </Link>
+                                  <Link
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </Link>
                                 )}
                               </div>
                             ))}
@@ -171,21 +168,19 @@ class Servicos extends Component {
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
                             {i.terca.map(board => (
-                              <div  className="button-hour">
-                              {board.value && (
-                                 <Link
-                                 to={{
-                                   pathname: "/finalizar-agendamento",
-                                   search: "?nome=" + i.nome
-                            
-                                 }}
-                               
-                                 className="btn btn-primary"
-                                 >
-                                   {board.hour}
-                                 </Link>
-                              )}
-                            </div>
+                              <div className="button-hour">
+                                {board.value && (
+                                  <Link
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </Link>
+                                )}
+                              </div>
                             ))}
                           </div>
                         </div>
@@ -211,21 +206,19 @@ class Servicos extends Component {
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
                             {i.quarta.map(board => (
-                              <div  className="button-hour">
-                              {board.value && (
-                                 <Link
-                                 to={{
-                                   pathname: "/finalizar-agendamento",
-                                   search: "?nome=" + i.nome
-                            
-                                 }}
-                               
-                                 className="btn btn-primary"
-                                 >
-                                   {board.hour}
-                                 </Link>
-                              )}
-                            </div>
+                              <div className="button-hour">
+                                {board.value && (
+                                  <Link
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </Link>
+                                )}
+                              </div>
                             ))}
                           </div>
                         </div>
@@ -251,21 +244,19 @@ class Servicos extends Component {
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
                             {i.quinta.map(board => (
-                              <div  className="button-hour">
-                              {board.value && (
-                                 <Link
-                                 to={{
-                                   pathname: "/finalizar-agendamento",
-                                   search: "?nome=" + i.nome
-                            
-                                 }}
-                               
-                                 className="btn btn-primary"
-                                 >
-                                   {board.hour}
-                                 </Link>
-                              )}
-                            </div>
+                              <div className="button-hour">
+                                {board.value && (
+                                  <Link
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </Link>
+                                )}
+                              </div>
                             ))}
                           </div>
                         </div>
@@ -291,21 +282,19 @@ class Servicos extends Component {
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
                             {i.sexta.map(board => (
-                             <div  className="button-hour">
-                             {board.value && (
-                                <Link
-                                to={{
-                                  pathname: "/finalizar-agendamento",
-                                  search: "?nome=" + i.nome
-                           
-                                }}
-                              
-                                className="btn btn-primary"
-                                >
-                                  {board.hour}
-                                </Link>
-                             )}
-                           </div>
+                              <div className="button-hour">
+                                {board.value && (
+                                  <Link
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </Link>
+                                )}
+                              </div>
                             ))}
                           </div>
                         </div>
@@ -331,33 +320,29 @@ class Servicos extends Component {
                         <div class="col mb-4 mb-lg-0 text-center">
                           <div class="row">
                             {i.sabado.map(board => (
-                             <div  className="button-hour">
-                             {board.value && (
-                                <Link
-                                to={{
-                                  pathname: "/finalizar-agendamento",
-                                  search: "?nome=" + i.nome
-                           
-                                }}
-                              
-                                className="btn btn-primary"
-                                >
-                                  {board.hour}
-                                </Link>
-                             )}
-                           </div>
+                              <div className="button-hour">
+                                {board.value && (
+                                  <Link
+                                    to={{
+                                      pathname: "/finalizar-agendamento",
+                                      search: "?nome=" + i.nome
+                                    }}
+                                    className="btn btn-primary"
+                                  >
+                                    {board.hour}
+                                  </Link>
+                                )}
+                              </div>
                             ))}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                 
                 )
             )}
           </div>
         </Container>
-        
       </div>
     );
   }
