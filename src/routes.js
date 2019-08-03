@@ -1,4 +1,6 @@
 import React from "react";
+import { Provider } from 'react-redux';
+import Store from './store';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Main from './Components/Pages/Main';
@@ -14,18 +16,18 @@ import Sucesso from './Components/Pages/Sucesso';
 
 const Routes = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <div>
-        <Route exact path="/" component={Main} />
-        <Route exact path="/servicos" component={Servicos} />
-        <Route exact path="/signIn" component={SignIn} />
-        <Route exact path="/signUp" component={SignUp} />
-        <Route exact path="/finalizar-agendamento" component={Finalize} />
-        <Route exact path="/sucesso" component={Sucesso} />
-        </div>
-      </Router>
-    </AuthProvider>
+    <Provider store={Store}>
+      <AuthProvider>
+        <Router>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/servicos" component={Servicos} />
+          <Route exact path="/signIn" component={SignIn} />
+          <Route exact path="/signUp" component={SignUp} />
+          <Route exact path="/finalizar-agendamento" component={Finalize} />
+          <Route exact path="/sucesso" component={Sucesso} />
+        </Router>
+      </AuthProvider>
+    </Provider>
   );
 };
 

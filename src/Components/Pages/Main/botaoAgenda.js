@@ -8,18 +8,12 @@ import "../../../assets/css/components.css";
 
 class BotaoAgenda extends Component {
   render() {
-    let especialidade = this.props.data.title;
-    let valor = this.props.data.author;
-
-
     return (
       <Container>
         <Link
-          to={{
-            pathname: "/servicos",
-            search: "?especialidade=" + especialidade
-          }}
+          to="/servicos"
           className="btn btn-primary"
+          onClick={this.props.onClick}
         >
           Agendar
         </Link>

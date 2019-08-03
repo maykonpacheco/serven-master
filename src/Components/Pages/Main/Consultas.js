@@ -7,6 +7,8 @@ import BotaoAgenda from "./botaoAgenda";
 import "../../../assets/css/style.css";
 import "../../../assets/css/components.css";
 
+import { connect } from 'react-redux';
+
 class Consultas extends Component {
   constructor(props) {
     super(props);
@@ -39,6 +41,11 @@ class Consultas extends Component {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
+  agendar = board => {
+    this.props.dispatch({ type: 'SET_QUERY_TITLE', payload: board.title });
+    this.props.dispatch({ type: 'SET_QUERY_VALUE', payload: board.author });
+  };
+
   render() {
     return (
       <Container>
@@ -55,7 +62,7 @@ class Consultas extends Component {
                   </Link>
                 </div>
                 <div className="card-header-action">
-                  <BotaoAgenda data={board} />
+                  <BotaoAgenda onClick={() => this.agendar(board)} />
                 </div>
               </div>
             </div>
@@ -66,4 +73,13 @@ class Consultas extends Component {
   }
 }
 
-export default Consultas;
+const mapStateToProps = state => {
+  let { title, value } = state.queries;
+
+  return {
+    title,
+    value
+  };
+};
+
+export default connect(mapStateToProps)(Consultas);

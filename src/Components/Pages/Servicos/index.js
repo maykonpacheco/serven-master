@@ -8,6 +8,8 @@ import queryString from "query-string";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container } from "react-bootstrap";
 
+import { connect } from 'react-redux';
+
 class Servicos extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +36,6 @@ class Servicos extends Component {
         sexta,
         sabado,
         crm
-        
       } = doc.data();
       Especialist.push({
         key: doc.id,
@@ -49,10 +50,9 @@ class Servicos extends Component {
         quarta,
         quinta,
         sexta,
-        sabado,
-        
+        sabado
       });
-     //console.log(doc.id, " => ", doc.data());
+      //console.log(doc.id, " => ", doc.data());
     });
     //console.log(Especialist);
     this.setState({
@@ -61,12 +61,11 @@ class Servicos extends Component {
   };
 
   componentDidMount() {
-    const values = queryString.parse(this.props.location.search);
-    const { especialidade } = values;
+    const especialidade = this.props.title;
     const doctorsRef = firebase.firestore().collection("Especialist");
     const query = doctorsRef.where("especialidade", "==", especialidade);
     query.get().then(this.onCollectionUpdate);
-   // console.log("valor ", this.props.location.hash)
+    // console.log("valor ", this.props.location.hash)
   }
   render() {
     return (
@@ -95,13 +94,10 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
-                                      
-                                 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
-                                      
                                     {board.hour}
                                   </Link>
                                 )}
@@ -136,11 +132,10 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
-                                  
                                     {board.hour}
                                   </Link>
                                 )}
@@ -175,7 +170,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -213,7 +208,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -251,7 +246,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -289,7 +284,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -327,7 +322,7 @@ class Servicos extends Component {
                                   <Link
                                     to={{
                                       pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome 
+                                      search: "?nome=" + i.nome
                                     }}
                                     className="btn btn-primary"
                                   >
@@ -350,6 +345,12 @@ class Servicos extends Component {
   }
 }
 
-export default Servicos;
+const mapStateToProps = state => {
+  let { title } = state.queries;
+
+  return { title };
+};
+
+export default connect(mapStateToProps)(Servicos);
 
 //search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "domingo"
