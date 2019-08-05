@@ -4,7 +4,6 @@ import firebase from "../../../firebase";
 import "./styles.css";
 import Navbar from "../../Navbar";
 import { Link } from "react-router-dom";
-import queryString from "query-string";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container } from "react-bootstrap";
 
