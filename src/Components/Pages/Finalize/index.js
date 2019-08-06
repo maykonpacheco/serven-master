@@ -8,78 +8,42 @@ import queryString from "query-string";
 
 import { connect } from "react-redux";
 class Finalize extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = firebase.firestore().collection("Especialist");
-    this.unsubscribe = null;
+  constructor() {
+    super();
+    this.ref = firebase.firestore().collection('Agendamento');
     this.state = {
-      Especialist: [],
-      key: ""
+      especialidade: '',
+      profissional: '',
+      valor: ''
     };
   }
-
-  onChange = e => {
-    const state = this.state;
+  onChange = (e) => {
+    const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
-  };
+  }
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
-    const { especialidade } = this.state;
+    const { especialidade, profissional, valor } = this.state;
 
-    this.ref
-      .add({
-        especialidade
-      })
-      .then(docRef => {
-        this.setState({
-          especialidade: ""
-        });
-        this.props.history.push("/");
-      })
-      .catch(error => {
-        console.error("Error adding document: ", error);
+    this.ref.add({
+      especialidade,
+      profissional,
+      valor
+    }).then((docRef) => {
+      this.setState({
+        especialidade: '',
+        profissional: '',
+        valor: ''
       });
-  };
-
-  onCollectionUpdate = querySnapshot => {
-    const Especialist = [];
-    querySnapshot.forEach(doc => {
-      const {
-        nome,
-        especialidade,
-        segunda,
-        domingo,
-        terca,
-        quarta,
-        quinta,
-        sexta,
-        sabado,
-        valor
-      } = doc.data();
-      Especialist.push({
-        key: doc.id,
-        doc, // DocumentSnapshot
-        nome,
-        especialidade,
-        domingo,
-        segunda,
-        terca,
-        quarta,
-        quinta,
-        sexta,
-        sabado,
-        valor
-      });
-      //console.log(doc.id, " => ", doc.data());
+      this.props.history.push("/sucesso")
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
     });
-    //console.log(Especialist);
-    this.setState({
-      Especialist
-    });
-  };
+  }
 
   componentDidMount() {
     const nome = this.props.title;
@@ -89,13 +53,10 @@ class Finalize extends Component {
   }
 
   render() {
-    console.log("props", this.props);
-
     return (
       <div>
         <Navbar />
         <Container>
-          <form onSubmit={this.onSubmit}>
             <div className="centerService">
               <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
                 Resumo
@@ -149,13 +110,14 @@ class Finalize extends Component {
                 </div>
               </div>
             </div>
-
+            <form onSubmit={this.onSubmit}>
             <div className="text-center">
               <button type="submit" className="btn btn-primary text-center">
                 Finalizar Agendamento
               </button>
+          
             </div>
-          </form>
+            </form>
         </Container>
       </div>
     );
