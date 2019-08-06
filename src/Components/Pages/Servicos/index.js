@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container } from "react-bootstrap";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { especialist } from "../../../reducers/especialist";
 
 class Servicos extends Component {
   constructor(props) {
@@ -64,9 +65,21 @@ class Servicos extends Component {
     const doctorsRef = firebase.firestore().collection("Especialist");
     const query = doctorsRef.where("especialidade", "==", especialidade);
     query.get().then(this.onCollectionUpdate);
-    // console.log("valor ", this.props.location.hash)
   }
+
+  resumo = especialist => {
+    this.props.dispatch({
+      type: "SET_ESPECIALIST_NOME",
+      payload: especialist.nome
+    });
+    this.props.dispatch({
+      type: "SET_ESPECIALIST_ESPECIALIDADE",
+      payload: especialist.especialidade
+    });
+  };
+
   render() {
+    console.log(this.props);
     return (
       <div>
         <Navbar />
@@ -91,10 +104,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -129,10 +140,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -167,10 +176,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -205,10 +212,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -243,10 +248,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -281,10 +284,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -319,10 +320,8 @@ class Servicos extends Component {
                               <div className="button-hour">
                                 {board.value && (
                                   <Link
-                                    to={{
-                                      pathname: "/finalizar-agendamento",
-                                      search: "?nome=" + i.nome
-                                    }}
+                                    onClick={() => this.resumo(i)}
+                                    to="/finalizar-agendamento"
                                     className="btn btn-primary"
                                   >
                                     {board.hour}
@@ -351,5 +350,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(Servicos);
-
-//search: "?nome=" + i.nome + "?horas=" + board.hour + "?dia=" + "domingo"
