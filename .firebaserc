@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "febsaude-4aa5b"
+  },
+  "targets": {
+    "febsaude-4aa5b": {
+      "hosting": {
+        "seven-agendamento": [
+          "seven-agendamento"
+        ]
+      }
+    }
+  }
+}

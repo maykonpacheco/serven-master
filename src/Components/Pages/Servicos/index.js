@@ -6,8 +6,6 @@ import Navbar from "../../Navbar";
 import { Link } from "react-router-dom";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container } from "react-bootstrap";
-import Moment from 'react-moment';
-import 'moment-timezone';
 
 
 
