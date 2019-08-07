@@ -7,6 +7,7 @@ import Navbar from "../../Navbar";
 import queryString from "query-string";
 
 import { connect } from "react-redux";
+
 class Finalize extends Component {
   constructor() {
     super();
@@ -17,26 +18,22 @@ class Finalize extends Component {
       valor: ''
     };
   }
-  onChange = (e) => {
-    const state = this.state
-    state[e.target.name] = e.target.value;
-    this.setState(state);
-  }
+  
 
-  onSubmit = (e) => {
+  handleClick = (e) => {
     e.preventDefault();
 
-    const { especialidade, profissional, valor } = this.state;
+    const { especialidade, nome, value } = this.props;
 
     this.ref.add({
       especialidade,
-      profissional,
-      valor
+      nome,
+      value
     }).then((docRef) => {
       this.setState({
         especialidade: '',
-        profissional: '',
-        valor: ''
+        nome: '',
+        value: ''
       });
       this.props.history.push("/sucesso")
     })
@@ -67,7 +64,7 @@ class Finalize extends Component {
               <div className="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                   <div className="card-header">
-                    <h4 className="fontColor">
+                    <h4  className="fontColor">
                       Especialidade: {this.props.title}
                     </h4>
                   </div>
@@ -110,14 +107,14 @@ class Finalize extends Component {
                 </div>
               </div>
             </div>
-            <form onSubmit={this.onSubmit}>
+            
             <div className="text-center">
-              <button type="submit" className="btn btn-primary text-center">
+              <button onClick={this.handleClick} className="btn btn-primary text-center">
                 Finalizar Agendamento
               </button>
           
             </div>
-            </form>
+          
         </Container>
       </div>
     );
