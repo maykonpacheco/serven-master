@@ -23,7 +23,7 @@ const Routes = () => {
           <Route exact path="/servicos" component={Servicos} />
           <Route exact path="/signIn" component={SignIn} />
           <Route exact path="/signUp" component={SignUp} />
-          <Route exact path="/finalizar-agendamento" component={Finalize} />
+          <PrivateRoute exact path="/finalizar-agendamento" component={Finalize} />
           <Route exact path="/sucesso" component={Sucesso} />
         </Router>
       </AuthProvider>

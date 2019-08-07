@@ -15,25 +15,32 @@ class Finalize extends Component {
     this.state = {
       especialidade: '',
       profissional: '',
-      valor: ''
+      valor: '',
+      email: ''
     };
   }
   
+  
+
 
   handleClick = (e) => {
     e.preventDefault();
 
+    const  email  = firebase.auth().currentUser.email
     const { especialidade, nome, value } = this.props;
+    console.log("salvor", email)
 
     this.ref.add({
       especialidade,
       nome,
-      value
+      value, 
+      email
     }).then((docRef) => {
       this.setState({
         especialidade: '',
         nome: '',
-        value: ''
+        value: '',
+        email: ''
       });
       this.props.history.push("/sucesso")
     })
@@ -47,9 +54,15 @@ class Finalize extends Component {
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
+    console.log("User",firebase.auth().currentUser.email);
+    const email = firebase.auth().currentUser.email
+    console.log("salvor", email)
+
+    
   }
 
   render() {
+
     return (
       <div>
         <Navbar />

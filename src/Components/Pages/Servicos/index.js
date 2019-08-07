@@ -6,6 +6,10 @@ import Navbar from "../../Navbar";
 import { Link } from "react-router-dom";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container } from "react-bootstrap";
+import Moment from 'react-moment';
+import 'moment-timezone';
+
+
 
 import { connect } from "react-redux";
 import { especialist } from "../../../reducers/especialist";
@@ -84,6 +88,7 @@ class Servicos extends Component {
       <div>
         <Navbar />
         <Container>
+          
           <div className="centerService">
             <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
               Domingo, 04 Agosto
