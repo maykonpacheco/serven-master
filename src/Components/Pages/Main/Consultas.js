@@ -7,6 +7,7 @@ import BotaoAgenda from "./botaoAgenda";
 import "../../../assets/css/style.css";
 import "../../../assets/css/components.css";
 
+
 import { connect } from 'react-redux';
 
 class Consultas extends Component {
@@ -47,6 +48,8 @@ class Consultas extends Component {
   };
 
   render() {
+   
+
     return (
       <Container>
         {this.state.boards.map((board, index) => (
@@ -54,6 +57,7 @@ class Consultas extends Component {
             <div className="card">
               <div className="card-header">
                 <h4 className="fontColor">{board.title}</h4>
+               
                 <div className="card-header-action">
                   <Link
                     className="btn"
@@ -67,6 +71,7 @@ class Consultas extends Component {
               </div>
             </div>
           </div>
+          
         ))}
       </Container>
     );

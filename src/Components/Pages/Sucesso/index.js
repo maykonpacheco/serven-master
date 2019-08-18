@@ -15,9 +15,10 @@ class Sucesso extends Component {
       <div>
         <Navbar />
         <Container>
-          <div class="alert alert-success alert-has-icon text-center">
+          <div class="text-center success">
             <div class="alert-body">
               <div class="alert-title"></div>
+              <CheckIcon />
               <h5>Maykon, seu agendamento foi realizado.</h5><br/>
               Trazer exames anteriores, receitas médicas e medicamentos (nome e dosagem) em uso.<br/>
               Antes do atendimento médico, você precisa passar pela recepção e por uma pré-consulta.<br/>

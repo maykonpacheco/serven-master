@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   nome: "",
-  especialidade: ""
+  especialidade: "",
+  semana: ""
 };
 
 export const especialist = (state = INITIAL_STATE, action) => {
@@ -14,6 +15,11 @@ export const especialist = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         especialidade: action.payload
+      };
+    case "SET_ESPECIALIST_SEMANA":
+      return {
+        ...state,
+        semana: action.payload
       };
       case 'RESET_ESPECIALIST':
           return INITIAL_STATE;

@@ -1,4 +1,6 @@
-.alert-success {
+.success {
     padding: 100px;
+    background: #0fa8a2;
+    color: #fff;
     
 }

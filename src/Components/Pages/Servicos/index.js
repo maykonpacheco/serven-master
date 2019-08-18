@@ -6,11 +6,17 @@ import Navbar from "../../Navbar";
 import { Link } from "react-router-dom";
 import BotaoAgenda from "../Main/botaoAgenda";
 import { Container } from "react-bootstrap";
-
-
+import * as moment from "moment";
 
 import { connect } from "react-redux";
 import { especialist } from "../../../reducers/especialist";
+import medico from '../../../assets/img/medico.png';
+
+import 'moment/locale/pt-br';
+
+
+
+
 
 class Servicos extends Component {
   constructor(props) {
@@ -28,6 +34,7 @@ class Servicos extends Component {
     querySnapshot.forEach(doc => {
       const {
         nome,
+        data,
         especialidade,
         valor,
         segunda,
@@ -43,6 +50,7 @@ class Servicos extends Component {
         key: doc.id,
         doc, // DocumentSnapshot
         nome,
+        data,
         valor,
         crm,
         especialidade,
@@ -78,268 +86,67 @@ class Servicos extends Component {
       type: "SET_ESPECIALIST_ESPECIALIDADE",
       payload: especialist.especialidade
     });
+    this.props.dispatch({
+      type: "SET_ESPECIALIST_SEMANA",
+      payload: especialist.semana
+    })
   };
 
   render() {
-    console.log(this.props);
+    let semana = [];
+
+    for (let i=0;i<7;i++) {
+      semana.push(moment(new Date()).add(i,'days'))
+    }
+    let semanaIndex = semana.map(i => i.format('dddd').toLowerCase().replace("-feira", ""));
+
     return (
       <div>
         <Navbar />
         <Container>
-          
-          <div className="centerService">
-            <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
-              Domingo, 04 Agosto
-            </h5>
+        {semana.map((dia, index) => 
+            <div className="centerService">
+              <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
+              {dia.format('dddd, LL')}
+              </h5>
 
-            {this.state.Especialist.map(
-              i =>
-                i.domingo.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.domingo.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
+              {this.state.Especialist.map(
+                i =>
+                  i[semanaIndex[index]] && (
+                    <div className="col-12 col-sm-12 col-lg-12">
+                      <div class="card">
+                        <div className="card-header">
+                          <div class="login-brand">
+                              <img src={medico} alt="logo" width="70" class="shadow-light rounded-circle"/>
+                          </div>
+                          <h4 className="fontColor">{i.nome}</h4>
+                        </div>
+                        <div className="card-header row">
+                          <div class="col mb-4 mb-lg-0 text-center">
+                            <div class="row">
+                              {i[semanaIndex[index]].map(board => (
+                                <div className="button-hour">
+                                  {board.value && (
+                                    <Link
+                                      onClick={() => this.resumo(i)}
+                                      to="/finalizar-agendamento"
+                                      className="btn btn-primary"
+                                    >
+                                      {board.hour}
+                                    </Link>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )
-            )}
-          </div>
-          <div className="centerService">
-            <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Segunda, 05 Agosto
-            </h5>
-            {this.state.Especialist.map(
-              i =>
-                i.segunda.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.segunda.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
-          <div className="centerService">
-            <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Terça, 06 Agosto
-            </h5>
-            {this.state.Especialist.map(
-              i =>
-                i.terca.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.terca.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
-          <div className="centerService">
-            <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Quarta, 07 Agosto
-            </h5>
-            {this.state.Especialist.map(
-              i =>
-                i.quarta.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.quarta.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
-          <div className="centerService">
-            <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Quinta, 08 Agosto
-            </h5>
-            {this.state.Especialist.map(
-              i =>
-                i.quinta.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.quinta.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
-          <div className="centerService">
-            <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Sexta, 09 Agosto
-            </h5>
-            {this.state.Especialist.map(
-              i =>
-                i.sexta.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.sexta.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
-          <div className="centerService">
-            <h5 className="fontColor fontData col-12 col-sm-12 col-lg-12">
-              Sabado, 10 Agosto
-            </h5>
-            {this.state.Especialist.map(
-              i =>
-                i.sabado.filter(el => el.value).length && (
-                  <div className="col-12 col-sm-12 col-lg-12">
-                    <div class="card">
-                      <div className="card-header">
-                        <h4 className="fontColor">{i.nome}</h4>
-                      </div>
-                      <div className="card-header row">
-                        <div class="col mb-4 mb-lg-0 text-center">
-                          <div class="row">
-                            {i.sabado.map(board => (
-                              <div className="button-hour">
-                                {board.value && (
-                                  <Link
-                                    onClick={() => this.resumo(i)}
-                                    to="/finalizar-agendamento"
-                                    className="btn btn-primary"
-                                  >
-                                    {board.hour}
-                                  </Link>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-            )}
-          </div>
+                  )
+              )}
+            </div>
+          
+        )}
         </Container>
       </div>
     );

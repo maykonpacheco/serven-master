@@ -3,7 +3,7 @@ import { withRouter, Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import firebase from "../../../firebase";
 import { AuthContext } from "./Auth.js";
-import logo from '../../../assets/img//logo.png';
+import logo from '../../../assets/img/logo.png';
 
   const SignIn = ({ history }) => {
     const handleLogin = useCallback(

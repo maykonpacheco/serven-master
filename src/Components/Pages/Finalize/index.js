@@ -16,7 +16,8 @@ class Finalize extends Component {
       especialidade: '',
       profissional: '',
       valor: '',
-      email: ''
+      email: '',
+      data: ''
     };
   }
   
@@ -25,22 +26,23 @@ class Finalize extends Component {
 
   handleClick = (e) => {
     e.preventDefault();
-
     const  email  = firebase.auth().currentUser.email
-    const { especialidade, nome, value } = this.props;
+    const { especialidade, nome, value, data } = this.props;
     console.log("salvor", email)
 
     this.ref.add({
       especialidade,
       nome,
       value, 
-      email
+      email,
+      data
     }).then((docRef) => {
       this.setState({
         especialidade: '',
         nome: '',
         value: '',
-        email: ''
+        email: '',
+        data: ''
       });
       this.props.history.push("/sucesso")
     })
@@ -54,11 +56,7 @@ class Finalize extends Component {
     const resumoRef = firebase.firestore().collection("Especialist");
     const query = resumoRef.where("nome", "==", nome);
     query.get().then(this.onCollectionUpdate);
-    console.log("User",firebase.auth().currentUser.email);
-    const email = firebase.auth().currentUser.email
-    console.log("salvor", email)
 
-    
   }
 
   render() {
@@ -90,7 +88,7 @@ class Finalize extends Component {
                 <div class="card">
                   <div className="card-header">
                     <h4 className="fontColor">
-                      Data e hora: Segunda, 05 Agosto às 15:00
+                      Data e hora: {this.props.semana}
                     </h4>
                   </div>
                 </div>
@@ -136,9 +134,9 @@ class Finalize extends Component {
 
 const mapStateToProps = state => {
   let { title, value } = state.queries;
-  let { nome, especialidade } = state.especialist;
+  let { nome, especialidade, semana } = state.especialist;
 
-  return { title, value, nome, especialidade };
+  return { title, value, nome, especialidade, semana };
 };
 
 export default connect(mapStateToProps)(Finalize);
