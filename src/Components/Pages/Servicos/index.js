@@ -10,13 +10,9 @@ import * as moment from "moment";
 
 import { connect } from "react-redux";
 import { especialist } from "../../../reducers/especialist";
-import medico from '../../../assets/img/medico.png';
+import medico from "../../../assets/img/medico.png";
 
-import 'moment/locale/pt-br';
-
-
-
-
+import "moment/locale/pt-br";
 
 class Servicos extends Component {
   constructor(props) {
@@ -34,7 +30,7 @@ class Servicos extends Component {
     querySnapshot.forEach(doc => {
       const {
         nome,
-        data,
+        dia,
         especialidade,
         valor,
         segunda,
@@ -50,7 +46,7 @@ class Servicos extends Component {
         key: doc.id,
         doc, // DocumentSnapshot
         nome,
-        data,
+        dia,
         valor,
         crm,
         especialidade,
@@ -77,7 +73,7 @@ class Servicos extends Component {
     query.get().then(this.onCollectionUpdate);
   }
 
-  resumo = especialist => {
+  resumo = (especialist, bookDate, Hours) => {
     this.props.dispatch({
       type: "SET_ESPECIALIST_NOME",
       payload: especialist.nome
@@ -87,27 +83,36 @@ class Servicos extends Component {
       payload: especialist.especialidade
     });
     this.props.dispatch({
-      type: "SET_ESPECIALIST_SEMANA",
-      payload: especialist.semana
-    })
+      type: "SET_CONSULTATION_DATE",
+      payload: bookDate
+    });
+    this.props.dispatch({
+      type: "SET_CONSULTATION_HOURS",
+      payload: Hours
+    });
   };
 
   render() {
     let semana = [];
 
-    for (let i=0;i<7;i++) {
-      semana.push(moment(new Date()).add(i,'days'))
+    for (let i = 0; i < 7; i++) {
+      semana.push(moment(new Date()).add(i, "days"));
     }
-    let semanaIndex = semana.map(i => i.format('dddd').toLowerCase().replace("-feira", ""));
+    let semanaIndex = semana.map(i =>
+      i
+        .format("dddd")
+        .toLowerCase()
+        .replace("-feira", "")
+    );
 
     return (
       <div>
         <Navbar />
         <Container>
-        {semana.map((dia, index) => 
+          {semana.map((dia, index) => (
             <div className="centerService">
               <h5 className="fontData fontColor col-12 col-sm-12 col-lg-12">
-              {dia.format('dddd, LL')}
+                {dia.format("dddd, LL")}
               </h5>
 
               {this.state.Especialist.map(
@@ -117,7 +122,12 @@ class Servicos extends Component {
                       <div class="card">
                         <div className="card-header">
                           <div class="login-brand">
-                              <img src={medico} alt="logo" width="70" class="shadow-light rounded-circle"/>
+                            <img
+                              src={medico}
+                              alt="logo"
+                              width="70"
+                              class="shadow-light rounded-circle"
+                            />
                           </div>
                           <h4 className="fontColor">{i.nome}</h4>
                         </div>
@@ -128,7 +138,9 @@ class Servicos extends Component {
                                 <div className="button-hour">
                                   {board.value && (
                                     <Link
-                                      onClick={() => this.resumo(i)}
+                                      onClick={() =>
+                                        this.resumo(i, dia.format("dddd, LL"), board.hour )
+                                      }
                                       to="/finalizar-agendamento"
                                       className="btn btn-primary"
                                     >
@@ -145,8 +157,7 @@ class Servicos extends Component {
                   )
               )}
             </div>
-          
-        )}
+          ))}
         </Container>
       </div>
     );

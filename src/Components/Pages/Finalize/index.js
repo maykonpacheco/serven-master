@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import firebase from "../../../firebase";
 //import './styles.css';
+
 import { Container } from "react-bootstrap";
 import Navbar from "../../Navbar";
 //import Footer from "../../Footer";
 import queryString from "query-string";
 
 import { connect } from "react-redux";
+import 'moment/locale/pt-br';
 
 class Finalize extends Component {
   constructor() {
@@ -17,32 +19,33 @@ class Finalize extends Component {
       profissional: '',
       valor: '',
       email: '',
-      data: ''
+      dia: '', 
+      horas: ''
     };
   }
-  
-  
-
 
   handleClick = (e) => {
     e.preventDefault();
     const  email  = firebase.auth().currentUser.email
-    const { especialidade, nome, value, data } = this.props;
-    console.log("salvor", email)
+    const { especialidade, nome, value } = this.props;
+    const {dia, horas} = firebase.firestore.Timestamp.fromDate(new Date())
+    
 
     this.ref.add({
       especialidade,
       nome,
       value, 
       email,
-      data
+      dia, 
+      horas
     }).then((docRef) => {
       this.setState({
         especialidade: '',
         nome: '',
         value: '',
         email: '',
-        data: ''
+        dia: '', 
+        horas: ''
       });
       this.props.history.push("/sucesso")
     })
@@ -60,7 +63,7 @@ class Finalize extends Component {
   }
 
   render() {
-
+ 
     return (
       <div>
         <Navbar />
@@ -88,7 +91,8 @@ class Finalize extends Component {
                 <div class="card">
                   <div className="card-header">
                     <h4 className="fontColor">
-                      Data e hora: {this.props.semana}
+                      Data e hora: {this.props.dia} às {this.props.horas}
+            
                     </h4>
                   </div>
                 </div>
@@ -134,9 +138,8 @@ class Finalize extends Component {
 
 const mapStateToProps = state => {
   let { title, value } = state.queries;
-  let { nome, especialidade, semana } = state.especialist;
-
-  return { title, value, nome, especialidade, semana };
+  let { nome, especialidade, dia, horas } = state.especialist;
+  return { title, value, nome, especialidade, dia, horas };
 };
 
 export default connect(mapStateToProps)(Finalize);
