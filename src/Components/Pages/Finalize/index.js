@@ -27,8 +27,8 @@ class Finalize extends Component {
   handleClick = (e) => {
     e.preventDefault();
     const  email  = firebase.auth().currentUser.email
-    const { especialidade, nome, value } = this.props;
-    const {dia, horas} = firebase.firestore.Timestamp.fromDate(new Date())
+    const { especialidade, nome, value, horas } = this.props;
+    const dia = firebase.firestore.Timestamp.now()
     
 
     this.ref.add({
@@ -36,7 +36,7 @@ class Finalize extends Component {
       nome,
       value, 
       email,
-      dia, 
+      dia,
       horas
     }).then((docRef) => {
       this.setState({
@@ -44,7 +44,7 @@ class Finalize extends Component {
         nome: '',
         value: '',
         email: '',
-        dia: '', 
+        dia: '',
         horas: ''
       });
       this.props.history.push("/sucesso")
